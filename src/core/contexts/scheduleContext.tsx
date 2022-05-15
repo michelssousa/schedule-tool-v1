@@ -1,8 +1,9 @@
 import React, { createContext } from "react";
+
 import { Props } from "~/core";
 
 type ScheduleContextProps = Partial<{
-  data: {};
+  data: object;
   daySelected: number;
 }>;
 
