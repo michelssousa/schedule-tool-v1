@@ -1,11 +1,9 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import { useContext } from "react";
-import { useSchedule } from "~/core/contexts";
+
+import { useScheduleContext } from "~/core/contexts";
 
 const Home: NextPage = () => {
-  const { data } = useSchedule();
+  const { data } = useScheduleContext();
   return (
     <>
       <div>Michel Testando</div>
