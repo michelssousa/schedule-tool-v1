@@ -5,15 +5,23 @@ import { Global, css } from "@emotion/react";
 import { AppProps } from "next/app";
 
 import { ScheduleProvider } from "~/core";
-import theme from "~/styles/theme";
 
 const globalStyles = css`
   * {
+    margin: 0;
+    padding: 0;
     font-size: 62.5%;
   }
   ,
+  body {
+    position: relative;
+    background: #e6e6fa;
+    width: 100%;
+    height: 100%;
+  }
+  ,
   html {
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
   }
   ,
   #__next {
@@ -26,7 +34,7 @@ const globalStyles = css`
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ScheduleProvider>
-      <ChakraProvider resetCSS theme={theme}>
+      <ChakraProvider resetCSS>
         <Global styles={globalStyles} />
         <Component {...pageProps} />
       </ChakraProvider>
