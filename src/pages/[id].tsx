@@ -1,5 +1,8 @@
-import { Spacer, Grid, Text, Box } from "@chakra-ui/react";
+import { useEffect } from "react";
+
 import type { NextPage } from "next";
+import { useRouter } from "next/router";
+import { Spacer, Grid, Text, Box } from "@chakra-ui/react";
 
 import {
   Header,
@@ -10,9 +13,16 @@ import {
   ListTimeFree,
 } from "~/components";
 import ListReserved from "~/components/TimesReserverd";
+import { useScheduleContext } from "~/core/contexts";
 import { colors } from "~/styles";
 
 const Home: NextPage = () => {
+  const { getUser, setUser } = useScheduleContext();
+  const router = useRouter();
+  const { id } = router.query;
+  useEffect(() => {
+    setUser(id);
+  });
   return (
     <>
       <Wrapper>
@@ -29,7 +39,7 @@ const Home: NextPage = () => {
             </Column>
           </Box>
           <Box gridArea="main">
-            <Row h="15%" w="100%" bg={colors.body} mb="1rem">
+            <Row h="15%" w="100%" bg={colors.body} mb="2rem">
               <Filter />
             </Row>
             <Box h="30%" mb="1rem">
@@ -40,7 +50,7 @@ const Home: NextPage = () => {
             </Box>
           </Box>
           <Box gridArea="footer" bg={colors.body}>
-            footer
+            {getUser}
           </Box>
         </Grid>
       </Wrapper>

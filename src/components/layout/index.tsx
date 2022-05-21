@@ -1,13 +1,10 @@
 import {
   Container,
   VStack,
-  StackProps,
   Flex,
   FlexProps,
-  HStack,
   Box,
-  Text,
-  BoxProps,
+  Spinner,
 } from "@chakra-ui/react";
 
 import { Props } from "~/core";
@@ -105,6 +102,12 @@ export const Column: React.FC<Partial<FlexProps>> = ({ children, ...rest }) => {
     </>
   );
 };
+
+export const Loading = (props: Partial<Props>) => (
+  <Column h="100%" bg="transparent" align="center" justify="center">
+    <Spinner size="xl" />
+  </Column>
+);
 
 //
 

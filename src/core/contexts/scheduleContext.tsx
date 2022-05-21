@@ -11,6 +11,8 @@ type ScheduleContextProps = Partial<{
   hoursSelected: string[];
   setHoursSelected: any;
   getSetup: Setup;
+  getUser: number;
+  setUser: any;
   getRoomSelectOnChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   getDaySelectOnChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   getHoursFreeSelected: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -25,6 +27,7 @@ const ScheduleProvider: React.FC<Props> = ({ children }) => {
   const [room, setRoom] = useState<number>(1);
   const [hoursSelected, setHoursSelected] = useState<string[]>([]);
   const [getSetup, setSetup] = useState<Setup>();
+  const [getUser, setUser] = useState(0);
 
   const _result: ScheduleContextProps = {
     day,
@@ -34,6 +37,8 @@ const ScheduleProvider: React.FC<Props> = ({ children }) => {
     hoursSelected,
     setHoursSelected,
     getSetup,
+    getUser,
+    setUser,
     getHoursFreeSelected: (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
       const _buttonSelected = e.currentTarget.value;

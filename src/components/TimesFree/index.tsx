@@ -2,14 +2,28 @@ import React, { useEffect, useState } from "react";
 
 import { Heading, Grid, Button } from "@chakra-ui/react";
 
-import { Column, Row } from "~/components";
+import { Column, Row, Loading } from "~/components";
 import { Props, scheduleManager } from "~/core";
 import { useScheduleContext } from "~/core/contexts";
-import { colors } from "~/styles";
 
 type ButtonTimeProps = Props & {
   value: string;
 };
+
+type MGridProps = Props & {
+  list: string[];
+};
+
+const MGrid: React.FC<MGridProps> = ({ list }) => {
+  return (
+    <Grid w="100%" p={1} templateColumns="repeat(4, 1fr)" gap={2}>
+      {list.map((key) => (
+        <TimeButton key={key} value={key} />
+      ))}
+    </Grid>
+  );
+};
+
 const TimeButton: React.FC<ButtonTimeProps> = ({ value, ...rest }) => {
   const [show, setShow] = useState(false);
 
@@ -43,8 +57,16 @@ const TimeButton: React.FC<ButtonTimeProps> = ({ value, ...rest }) => {
 };
 
 const ListTimeFree: React.FC<Props> = () => {
-  const { getSetup, day, room, month, year, hoursSelected, setHoursSelected } =
-    useScheduleContext();
+  const {
+    getUser,
+    getSetup,
+    day,
+    room,
+    month,
+    year,
+    hoursSelected,
+    setHoursSelected,
+  } = useScheduleContext();
   const [schedulesFree, setScheduleFree] = useState<string[]>([]);
   const _minimumHours = 60;
   const _timeSelected =
@@ -56,13 +78,14 @@ const ListTimeFree: React.FC<Props> = () => {
         `${room}`,
         day,
         month,
-        year
+        year,
+        getUser
       );
       setScheduleFree([..._result.keys()]);
     }
 
     builScheduleFree();
-  }, [day, room, year, month, setHoursSelected]);
+  }, [day, room, year, month, setHoursSelected, getUser]);
 
   return (
     <>
@@ -77,11 +100,11 @@ const ListTimeFree: React.FC<Props> = () => {
             Tempo Reservado :{`${_timeSelected} Hora(s)`}
           </Heading>
         </Row>
-        <Grid w="100%" p={1} templateColumns="repeat(4, 1fr)" gap={2}>
-          {schedulesFree.map((key) => (
-            <TimeButton key={key} value={key} />
-          ))}
-        </Grid>
+        {schedulesFree.length <= 0 ? (
+          <Loading />
+        ) : (
+          <MGrid list={schedulesFree} />
+        )}
         <div>{JSON.stringify(hoursSelected, true, 2)}</div>
       </Column>
     </>

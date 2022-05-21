@@ -83,7 +83,8 @@ export const scheduleManager = {
       };
       return _result;
     },
-    key: (room: string, date: string): string => `${room}-${date}-9`,
+    key: (room: string, date: string, user: number): string =>
+      `${room}-${date}-${user}`,
   },
   getSetup: async () => {
     const getSetup = await fetcher(scheduleManager.endpoints.setup);
@@ -165,7 +166,8 @@ export const scheduleManager = {
     room: string,
     day = 0,
     month = 0,
-    year = 0
+    year = 0,
+    user = 0
   ): Promise<Map<string, Partial<ScheduleDetail>>> => {
     const setup = await scheduleManager.getSetup();
     const blackList = await scheduleManager.blackList();
@@ -196,7 +198,8 @@ export const scheduleManager = {
       _startHour.set("minute", setup.minutesOpen);
       _baseScheduleKey = scheduleManager.format.key(
         room,
-        _startHour.format(scheduleManager.format.data)
+        _startHour.format(scheduleManager.format.data),
+        user
       );
 
       if (
@@ -217,7 +220,8 @@ export const scheduleManager = {
         _startHour.add(_minimumHours, "minutes");
         _baseScheduleKey = scheduleManager.format.key(
           room,
-          _startHour.format(scheduleManager.format.data)
+          _startHour.format(scheduleManager.format.data),
+          user
         );
 
         if (
