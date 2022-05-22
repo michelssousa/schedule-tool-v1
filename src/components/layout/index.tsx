@@ -108,18 +108,3 @@ export const Loading = (props: Partial<Props>) => (
     <Spinner size="xl" />
   </Column>
 );
-
-//
-
-//   <Text>Filter</Text>
-// </Container>
-// <Container bg="red" position="absolute" left="0" maxW="container.sm">
-// export const Column = (props: StackProps) => (
-//   <VStack
-//     alignItems="center"
-//     justifyContent="center"
-//     w={"100%"}
-//     h={"100%"}
-//     {...props}
-//   />
-// );

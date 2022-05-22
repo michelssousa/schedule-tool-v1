@@ -12,6 +12,7 @@ export type ScheduleDetail = {
   hour: string;
   idUser: string;
   idSchedule: string;
+  key?: string;
 };
 
 export type Setup = {
@@ -80,6 +81,7 @@ export const scheduleManager = {
         data: detail[1],
         hour: detail[2],
         idUser: detail[3],
+        key: schedule,
       };
       return _result;
     },

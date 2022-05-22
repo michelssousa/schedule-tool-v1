@@ -1,7 +1,9 @@
 import { useContext } from "react";
 
-import ScheduleProvider, { ScheduleContext } from "./scheduleContext";
+import ScheduleProvider, { RoomType, ScheduleContext } from "./scheduleContext";
 
 const useScheduleContext = () => useContext(ScheduleContext);
 
 export { ScheduleProvider, useScheduleContext };
+
+export type { RoomType };

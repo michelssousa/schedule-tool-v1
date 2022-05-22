@@ -3,6 +3,11 @@ import React, { createContext, useEffect, useState } from "react";
 import { Props, scheduleManager } from "~/core";
 import { Setup } from "~/core/schedule";
 
+export type RoomType = {
+  i_salas: string;
+  sala: string;
+};
+
 type ScheduleContextProps = Partial<{
   room: number;
   day: number;
@@ -13,6 +18,8 @@ type ScheduleContextProps = Partial<{
   getSetup: Setup;
   getUser: number;
   setUser: any;
+  rooms: RoomType[];
+  setRooms: any;
   getRoomSelectOnChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   getDaySelectOnChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   getHoursFreeSelected: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -28,6 +35,7 @@ const ScheduleProvider: React.FC<Props> = ({ children }) => {
   const [hoursSelected, setHoursSelected] = useState<string[]>([]);
   const [getSetup, setSetup] = useState<Setup>();
   const [getUser, setUser] = useState(0);
+  const [rooms, setRooms] = useState<RoomType[]>();
 
   const _result: ScheduleContextProps = {
     day,
@@ -39,6 +47,8 @@ const ScheduleProvider: React.FC<Props> = ({ children }) => {
     getSetup,
     getUser,
     setUser,
+    rooms,
+    setRooms,
     getHoursFreeSelected: (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
       const _buttonSelected = e.currentTarget.value;

@@ -45,7 +45,7 @@ const Home: NextPage = () => {
             <Box h="30%" mb="1rem">
               <ListTimeFree />
             </Box>
-            <Box h="55%">
+            <Box h="50%">
               <ListReserved />
             </Box>
           </Box>

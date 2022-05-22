@@ -22,7 +22,7 @@ import moment from "moment";
 
 import { Column, Row } from "~/components";
 import { Props, scheduleManager } from "~/core";
-import { useScheduleContext } from "~/core/contexts";
+import { useScheduleContext, RoomType } from "~/core/contexts";
 import { colors, themeGlobal } from "~/styles";
 
 const Logo = (props: BoxProps) => (
@@ -40,6 +40,7 @@ const MenuSetup = (props: Partial<MenuProps>) => (
       aria-label="Options"
       icon={<HamburgerIcon w="6" h="6" />}
       variant="gosth"
+      _focus={{ boxShadow: "none" }}
     />
     <Portal>
       <MenuList bg={colors.noActive} color="black">
@@ -63,15 +64,11 @@ export const Header: React.FC<BoxProps> = () => {
   );
 };
 
-type RoomType = {
-  i_salas: string;
-  sala: string;
-};
-
 export const Filter: React.FC<Props> = () => {
-  const [rooms, setRooms] = useState<RoomType[]>();
+  // const [rooms, setRooms] = useState<RoomType[]>();
   const _startDay = moment(new Date()).format("YYYY-MM-DD");
-  const { getRoomSelectOnChange, getDaySelectOnChange } = useScheduleContext();
+  const { rooms, setRooms, getRoomSelectOnChange, getDaySelectOnChange } =
+    useScheduleContext();
 
   useEffect(() => {
     async function getRoomsNames() {
@@ -79,7 +76,7 @@ export const Filter: React.FC<Props> = () => {
       setRooms(_rooms.data);
     }
     getRoomsNames();
-  }, []);
+  }, [setRooms]);
 
   return (
     <Row flex="1" p={themeGlobal.padding}>
@@ -92,7 +89,7 @@ export const Filter: React.FC<Props> = () => {
             defaultValue={2}
           >
             {rooms?.map((room: RoomType) => (
-              <option selected key={room.i_salas} value={room.i_salas}>
+              <option key={room.i_salas} value={room.i_salas}>
                 {room.sala}
               </option>
             ))}
@@ -107,7 +104,7 @@ export const Filter: React.FC<Props> = () => {
           <Input
             type="date"
             defaultValue={_startDay}
-            min={_startDay}
+            // min={_startDay}
             onChange={getDaySelectOnChange}
           />
         </FormControl>
@@ -115,9 +112,3 @@ export const Filter: React.FC<Props> = () => {
     </Row>
   );
 };
-
-/*
-
-            <option>United Arab Emirates</option>
-            <option>Nigeria</option>
-*/
