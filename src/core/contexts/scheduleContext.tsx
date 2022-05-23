@@ -59,7 +59,6 @@ const ScheduleProvider: React.FC<Props> = ({ children }) => {
     saveSchedule: async () => {
       const _result = await scheduleManager.shedulePost(hoursSelected);
       if (_result) {
-        setHoursSelected((list) => [...list, "1"]);
         setHoursSelected([]);
         return true;
       }

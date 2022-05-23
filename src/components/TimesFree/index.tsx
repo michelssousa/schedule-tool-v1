@@ -57,16 +57,8 @@ const TimeButton: React.FC<ButtonTimeProps> = ({ value, ...rest }) => {
 };
 
 const ListTimeFree: React.FC<Props> = () => {
-  const {
-    getUser,
-    getSetup,
-    day,
-    room,
-    month,
-    year,
-    hoursSelected,
-    setHoursSelected,
-  } = useScheduleContext();
+  const { getUser, getSetup, day, room, month, year, hoursSelected } =
+    useScheduleContext();
   const [schedulesFree, setScheduleFree] = useState<string[]>([]);
   const _minimumHours = 60;
   const _timeSelected =
@@ -74,7 +66,7 @@ const ListTimeFree: React.FC<Props> = () => {
 
   useEffect(() => {
     async function builScheduleFree() {
-      setHoursSelected([]);
+      // setHoursSelected([]);
       const _result = await scheduleManager.whiteList(
         `${room}`,
         day,
@@ -86,7 +78,7 @@ const ListTimeFree: React.FC<Props> = () => {
     }
 
     builScheduleFree();
-  }, [day, getUser, month, year, setHoursSelected, room]);
+  }, [day, getUser, month, year, hoursSelected, room]);
 
   return (
     <>
