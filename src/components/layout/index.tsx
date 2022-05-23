@@ -103,7 +103,7 @@ export const Column: React.FC<Partial<FlexProps>> = ({ children, ...rest }) => {
   );
 };
 
-export const Loading = (props: Partial<Props>) => (
+export const Loading = () => (
   <Column h="100%" bg="transparent" align="center" justify="center">
     <Spinner size="xl" />
   </Column>

@@ -7,6 +7,7 @@ import { colors } from "~/styles";
 
 export const Footer: React.FC<Props> = () => {
   const { saveSchedule, hoursSelected } = useScheduleContext();
+  const verifySelectedHours = hoursSelected?.length ?? 0;
   const toast = useToast();
 
   const scheduleRegister = async () => {
@@ -39,7 +40,7 @@ export const Footer: React.FC<Props> = () => {
           colorScheme={"facebook"}
           color={colors.noActive}
           onClick={scheduleRegister}
-          isDisabled={hoursSelected?.length <= 0 ? true : false}
+          isDisabled={verifySelectedHours <= 0 ? true : false}
         >
           Reservar Horario(s)
         </Button>

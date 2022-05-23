@@ -2,7 +2,10 @@
   "name": "tool-schedule",
   "version": "0.1.0",
   "private": true,
-  "license": "MIT",
+  "license": {
+    "type": "MIT",
+    "url": "https://toolbusiness.com.br"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

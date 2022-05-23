@@ -88,6 +88,7 @@ const ScheduleProvider: React.FC<Props> = ({ children }) => {
       }
     },
     getRoomSelectOnChange: (e: React.ChangeEvent<HTMLSelectElement>) => {
+      setHoursSelected([]);
       setRoom(parseInt(e.target.value));
     },
 
@@ -96,6 +97,7 @@ const ScheduleProvider: React.FC<Props> = ({ children }) => {
       setYear(parseInt(value.slice(0, 4)));
       setMonth(parseInt(value.slice(5, 7)));
       setDay(parseInt(value.slice(8)));
+      setHoursSelected([]);
     },
   };
 
