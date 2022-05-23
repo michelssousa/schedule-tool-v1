@@ -61,8 +61,9 @@ const ListTimeFree: React.FC<Props> = () => {
     useScheduleContext();
   const [schedulesFree, setScheduleFree] = useState<string[]>([]);
   const _minimumHours = 60;
-  const _timeSelected =
-    hoursSelected?.length / (_minimumHours / getSetup?.minimumHours);
+  const _hourSelect = hoursSelected?.length ?? 0;
+  const _getMimunHours = getSetup?.minimumHours ?? 1;
+  const _timeSelected = _hourSelect / (_minimumHours / _getMimunHours);
 
   useEffect(() => {
     async function builScheduleFree() {
@@ -98,7 +99,7 @@ const ListTimeFree: React.FC<Props> = () => {
         ) : (
           <MGrid list={schedulesFree} />
         )}
-        <div>{JSON.stringify(hoursSelected, true, 2)}</div>
+        {/* <div>{JSON.stringify(hoursSelected, true, 2)}</div> */}
       </Column>
     </>
   );
