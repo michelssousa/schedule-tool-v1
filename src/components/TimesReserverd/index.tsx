@@ -84,8 +84,8 @@ const ListReservedDetail: React.FC<ListReservedDetailProps> = ({
         </HStack>
 
         <Button
-          h="5rem"
-          w="5rem"
+          h="3rem"
+          w="3rem"
           variant="ghost"
           borderRadius="50%"
           p="1.5rem"
@@ -97,7 +97,7 @@ const ListReservedDetail: React.FC<ListReservedDetailProps> = ({
           _focus={{ boxShadow: "red.300" }}
           onClick={_deleteSchedule}
         >
-          <DeleteIcon w="8" h="8" color="red" />
+          <DeleteIcon w="6" h="6" color="red" />
         </Button>
       </HStack>
     </ListItem>
@@ -161,7 +161,7 @@ const ListReserved: React.FC<Props> = () => {
             {`Suas Reservas para: ${day}/${month}/${year}`}
           </Heading>
         </Row>
-        <Column w="100%" mt="1rem" px={["none", "5rem"]} overflowY="scroll">
+        <Column w="100%" mt="1rem" overflowY="scroll">
           {schedulesReserved.length <= 0 ? (
             <WithoutReserved />
           ) : (

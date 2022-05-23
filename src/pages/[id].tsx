@@ -42,18 +42,17 @@ const Home: NextPage = () => {
             </Column>
           </Box>
           <Box gridArea="main">
-            <Row h="15%" w="100%" bg={colors.body} mb="2rem">
+            <Row h="15vh" w="100%" bg={colors.body} mb="1rem">
               <Filter />
             </Row>
-            <Box h="30%" mb="1rem">
+            <Box h="30vh" mb="0.5rem">
               <ListTimeFree />
             </Box>
-            <Box h="50%">
+            <Box h="40vh">
               <ListReserved />
             </Box>
           </Box>
-          <Box zIndex="1000" gridArea="footer" bg={colors.body}>
-            {/* {getUser} */}
+          <Box zIndex="1000" h="15vh" gridArea="footer" bg={colors.body}>
             <Footer />
           </Box>
         </Grid>

@@ -16,7 +16,7 @@ type MGridProps = Props & {
 
 const MGrid: React.FC<MGridProps> = ({ list }) => {
   return (
-    <Grid w="100%" p={1} templateColumns="repeat(4, 1fr)" gap={2}>
+    <Grid w="100%" p={1} templateColumns="repeat(5, 1fr)" gap={2}>
       {list.map((key) => (
         <TimeButton key={key} value={key} />
       ))}
@@ -83,7 +83,7 @@ const ListTimeFree: React.FC<Props> = () => {
 
   return (
     <>
-      <Column h="100%">
+      <Column h="100%" justifyContent="flex-start">
         <Row justifyContent="flex-start" w="100%">
           <Heading as="h2" size="md">
             Selecione o horário de inicio da reunião
@@ -91,7 +91,7 @@ const ListTimeFree: React.FC<Props> = () => {
         </Row>
         <Row justifyContent="flex-start" w="100%">
           <Heading as="h6" size="xs">
-            Tempo Reservado :{`${_timeSelected} Hora(s)`}
+            Tempo Reservado : {`${_timeSelected} Hora(s)`}
           </Heading>
         </Row>
         {schedulesFree.length <= 0 ? (
