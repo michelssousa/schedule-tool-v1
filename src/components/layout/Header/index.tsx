@@ -89,7 +89,7 @@ export const Filter: React.FC<Props> = () => {
         <FormControl w="100%">
           <FormLabel htmlFor="sala reuniao">Sala</FormLabel>
           <Select
-            placeholder="Selecione uma sala"
+            // placeholder="Selecione uma sala"
             onChange={getRoomSelectOnChange}
             defaultValue={rooms?.length}
           >

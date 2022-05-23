@@ -161,7 +161,7 @@ const ListReserved: React.FC<Props> = () => {
             {`Suas Reservas para: ${day}/${month}/${year}`}
           </Heading>
         </Row>
-        <Column w="100%" mt="1rem" px={["none", "5rem"]}>
+        <Column w="100%" mt="1rem" px={["none", "5rem"]} overflowY="scroll">
           {schedulesReserved.length <= 0 ? (
             <WithoutReserved />
           ) : (
