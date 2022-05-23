@@ -10,7 +10,6 @@ const globalStyles = css`
   * {
     margin: 0;
     padding: 0;
-    font-size: 80.5%;
   }
   ,
   body {
@@ -18,6 +17,7 @@ const globalStyles = css`
     background: #e6e6fa;
     width: 100%;
     height: 100%;
+    font-size: (62.5/100) * 16;
   }
   ,
   html {
