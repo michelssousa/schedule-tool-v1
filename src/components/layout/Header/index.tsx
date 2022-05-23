@@ -67,8 +67,13 @@ export const Header: React.FC<BoxProps> = () => {
 export const Filter: React.FC<Props> = () => {
   // const [rooms, setRooms] = useState<RoomType[]>();
   const _startDay = moment(new Date()).format("YYYY-MM-DD");
-  const { rooms, setRooms, getRoomSelectOnChange, getDaySelectOnChange } =
-    useScheduleContext();
+  const {
+    update,
+    rooms,
+    setRooms,
+    getRoomSelectOnChange,
+    getDaySelectOnChange,
+  } = useScheduleContext();
 
   useEffect(() => {
     async function getRoomsNames() {
@@ -76,7 +81,7 @@ export const Filter: React.FC<Props> = () => {
       setRooms(_rooms.data);
     }
     getRoomsNames();
-  }, [setRooms]);
+  }, [setRooms, update]);
 
   return (
     <Row flex="1" p={themeGlobal.padding}>
@@ -86,7 +91,7 @@ export const Filter: React.FC<Props> = () => {
           <Select
             placeholder="Selecione uma sala"
             onChange={getRoomSelectOnChange}
-            defaultValue={2}
+            defaultValue={rooms?.length}
           >
             {rooms?.map((room: RoomType) => (
               <option key={room.i_salas} value={room.i_salas}>
@@ -100,11 +105,11 @@ export const Filter: React.FC<Props> = () => {
       <Spacer />
       <Box w="30%">
         <FormControl>
-          <FormLabel htmlFor="country">Data</FormLabel>
+          <FormLabel htmlFor="schedule">Data</FormLabel>
           <Input
             type="date"
-            defaultValue={_startDay}
-            // min={_startDay}
+            // defaultValue={_startDay}
+            min={_startDay}
             onChange={getDaySelectOnChange}
           />
         </FormControl>

@@ -30,7 +30,8 @@ const fetcher = (url: string) => axios.get(url).then((res: any) => res.data);
 const post = (data: any) =>
   axios
     .post(scheduleManager.endpoints.schedulePost, data)
-    .then((res: any) => res.data);
+    .then((res: any) => res.data)
+    .catch(() => []);
 
 export const scheduleManager = {
   hello: function () {
@@ -40,7 +41,7 @@ export const scheduleManager = {
     scheduleActual:
       "https://toolbusiness.com.br/salas/api.php?entidade=reserva/C",
     setup: "https://toolbusiness.com.br/salas/api.php?entidade=setup",
-    scheduleAll: "https://toolbusiness.com.br/salas/api.php?entidade=reserva/M",
+    scheduleAll: "https://toolbusiness.com.br/salas/api.php?entidade=reserva/C",
     schedulePost:
       "https://toolbusiness.com.br/salas/api.php?entidade=reserva/M",
     rooms: "https://toolbusiness.com.br/salas/api.php?entidade=salas",
@@ -52,6 +53,22 @@ export const scheduleManager = {
   shedulePost: async (data: string[]) => {
     try {
       const json = JSON.stringify({ reserva: data });
+      const _result = await post(json);
+
+      if (_result) {
+        // console.log(_result); verificar
+        return true;
+      }
+      return false;
+    } catch {
+      return false;
+    }
+  },
+
+  sheduleDelete: async (data: string) => {
+    try {
+      const _data: string[] = [data];
+      const json = JSON.stringify({ cancelar: _data });
       const _result = await post(json);
       if (_result) {
         return true;
@@ -71,6 +88,7 @@ export const scheduleManager = {
         hour: detail[2],
         idUser: detail[3],
         idSchedule: schedule.i_reserva,
+        key: schedule.reserva,
       };
       return _result;
     },

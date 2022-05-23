@@ -71,6 +71,7 @@ const ListTimeFree: React.FC<Props> = () => {
   const _minimumHours = 60;
   const _timeSelected =
     hoursSelected?.length / (_minimumHours / getSetup?.minimumHours);
+
   useEffect(() => {
     async function builScheduleFree() {
       setHoursSelected([]);
@@ -85,7 +86,7 @@ const ListTimeFree: React.FC<Props> = () => {
     }
 
     builScheduleFree();
-  }, [day, room, year, month, setHoursSelected, getUser]);
+  }, [day, getUser, month, year, setHoursSelected, room]);
 
   return (
     <>

@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
+import { Grid, Box } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import { Spacer, Grid, Text, Box } from "@chakra-ui/react";
 
 import {
   Header,
@@ -11,18 +11,21 @@ import {
   Column,
   Wrapper,
   ListTimeFree,
+  Footer,
 } from "~/components";
 import ListReserved from "~/components/TimesReserverd";
 import { useScheduleContext } from "~/core/contexts";
 import { colors } from "~/styles";
 
 const Home: NextPage = () => {
-  const { getUser, setUser } = useScheduleContext();
+  const { setUpdate, update, setUser } = useScheduleContext();
   const router = useRouter();
   const { id } = router.query;
+
   useEffect(() => {
     setUser(id);
   });
+
   return (
     <>
       <Wrapper>
@@ -49,8 +52,9 @@ const Home: NextPage = () => {
               <ListReserved />
             </Box>
           </Box>
-          <Box gridArea="footer" bg={colors.body}>
-            {getUser}
+          <Box zIndex="1000" gridArea="footer" bg={colors.body}>
+            {/* {getUser} */}
+            <Footer />
           </Box>
         </Grid>
       </Wrapper>
@@ -59,15 +63,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
-/*
-
-import { useScheduleContext } from "~/core/contexts";
-  const { day, room, getSetup } = useScheduleContext();
-            <Column>
-              <div>Michel Testando</div>
-              <div> room: {room}</div>
-              <div> day: {day}</div>
-              <div> setup: {getSetup?.minimumHours}</div>
-            </Column>
-*/

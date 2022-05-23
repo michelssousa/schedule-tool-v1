@@ -1,14 +1,47 @@
-import { Button } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 
 import { Row } from "~/components";
 import { Props } from "~/core";
+import { useScheduleContext } from "~/core/contexts";
+import { colors } from "~/styles";
 
 export const Footer: React.FC<Props> = () => {
+  const { saveSchedule, hoursSelected } = useScheduleContext();
+  const toast = useToast();
+
+  const scheduleRegister = async () => {
+    const _result = await saveSchedule?.();
+
+    if (_result) {
+      toast({
+        title: "Reserva",
+        description: "Feita com sucesso! ",
+        status: "success",
+        duration: 1000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: "Reserva",
+        description: "Falha em reservar seu horario",
+        status: "error",
+        duration: 1000,
+        isClosable: true,
+      });
+    }
+  };
+
   return (
     <>
-      <Row p="2">
-        <Button w="100%" colorScheme={"facebook"}>
-          Reservar
+      <Row w="100%" align="center" h="100%" justifyContent="center" px="2">
+        <Button
+          size="lg"
+          colorScheme={"facebook"}
+          color={colors.noActive}
+          onClick={scheduleRegister}
+          isDisabled={hoursSelected?.length <= 0 ? true : false}
+        >
+          Reservar Horario(s)
         </Button>
       </Row>
     </>

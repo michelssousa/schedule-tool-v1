@@ -19,7 +19,11 @@ type ScheduleContextProps = Partial<{
   getUser: number;
   setUser: any;
   rooms: RoomType[];
+  update: boolean;
+  setUpdate: any;
   setRooms: any;
+  saveSchedule: () => Promise<boolean>;
+  deleteSchedule: (e: React.MouseEvent<HTMLButtonElement>) => Promise<boolean>;
   getRoomSelectOnChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   getDaySelectOnChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   getHoursFreeSelected: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -36,6 +40,7 @@ const ScheduleProvider: React.FC<Props> = ({ children }) => {
   const [getSetup, setSetup] = useState<Setup>();
   const [getUser, setUser] = useState(0);
   const [rooms, setRooms] = useState<RoomType[]>();
+  const [update, setUpdate] = useState();
 
   const _result: ScheduleContextProps = {
     day,
@@ -49,6 +54,28 @@ const ScheduleProvider: React.FC<Props> = ({ children }) => {
     setUser,
     rooms,
     setRooms,
+    update,
+    setUpdate,
+    saveSchedule: async () => {
+      const _result = await scheduleManager.shedulePost(hoursSelected);
+      if (_result) {
+        setHoursSelected((list) => [...list, "1"]);
+        setHoursSelected([]);
+        return true;
+      }
+      return false;
+    },
+    deleteSchedule: async (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      const scheduleKeyDeleted = e.currentTarget.value;
+      const _result = await scheduleManager.sheduleDelete(scheduleKeyDeleted);
+      if (_result) {
+        setHoursSelected((list) => [...list, "1"]);
+        setHoursSelected([]);
+        return _result;
+      }
+      return _result;
+    },
     getHoursFreeSelected: (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
       const _buttonSelected = e.currentTarget.value;
@@ -79,7 +106,7 @@ const ScheduleProvider: React.FC<Props> = ({ children }) => {
       setSetup(_setup);
     }
     getRoomsNames();
-  }, []);
+  });
 
   return (
     <ScheduleContext.Provider value={_result}>

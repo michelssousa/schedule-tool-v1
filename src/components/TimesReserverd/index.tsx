@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
 
+import { DeleteIcon } from "@chakra-ui/icons";
 import {
   Heading,
   Text,
   List,
   ListItem,
-  Box,
   HStack,
   Stack,
   VStack,
-  Avatar,
   Button,
   Spacer,
+  useToast,
 } from "@chakra-ui/react";
-import { DeleteIcon } from "@chakra-ui/icons";
 
-import { Column, Row, Loading } from "~/components";
+import { Column, Row } from "~/components";
 import { Props, scheduleManager } from "~/core";
 import { useScheduleContext, RoomType } from "~/core/contexts";
 import { ScheduleDetail } from "~/core/schedule";
@@ -34,12 +33,27 @@ const ListReservedDetail: React.FC<ListReservedDetailProps> = ({
   roomId,
   scheduleKey,
 }) => {
-  const { rooms } = useScheduleContext();
+  const { deleteSchedule, rooms } = useScheduleContext();
   const _date = `${date.slice(0, 2)}/${date.slice(2, 4)}`;
   const _hour = `${hour.slice(0, 2)}:${hour.slice(2, 4)}`;
+  const toast = useToast();
 
   const _roomName = rooms?.filter((room: RoomType) => room.i_salas == roomId)[0]
     .sala;
+
+  const _deleteSchedule = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const _result = await deleteSchedule?.(e);
+    if (_result) {
+      toast({
+        title: "Cancelamento de Reserva",
+        description: "Feito com sucesso",
+        status: "success",
+        duration: 1500,
+        isClosable: true,
+      });
+    }
+  };
 
   return (
     <ListItem bg="white">
@@ -81,6 +95,7 @@ const ListReservedDetail: React.FC<ListReservedDetailProps> = ({
           float="left"
           value={scheduleKey}
           _focus={{ boxShadow: "red.300" }}
+          onClick={_deleteSchedule}
         >
           <DeleteIcon w="8" h="8" color="red" />
         </Button>
@@ -105,7 +120,7 @@ const WithReserved = ({ list }: WithReservedProps) => (
   <List spacing={2} w="100%" h="100%">
     {list.map((schedule: ScheduleDetail) => (
       <ListReservedDetail
-        key={schedule.key + schedule.hour}
+        key={schedule.key + schedule.hour + schedule.data}
         date={schedule.data}
         hour={schedule.hour}
         roomId={schedule.room}
@@ -116,7 +131,8 @@ const WithReserved = ({ list }: WithReservedProps) => (
 );
 
 const ListReserved: React.FC<Props> = () => {
-  const { day, room, month, year, getUser } = useScheduleContext();
+  const { hoursSelected, day, room, month, year, getUser } =
+    useScheduleContext();
   const [schedulesReserved, setScheduleReserved] = useState<ScheduleDetail[]>(
     []
   );
@@ -135,7 +151,7 @@ const ListReserved: React.FC<Props> = () => {
     }
 
     builScheduleFree();
-  }, [getUser, day, room, month, year]);
+  }, [getUser, day, room, month, year, hoursSelected]);
 
   return (
     <>
