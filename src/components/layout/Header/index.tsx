@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import { HamburgerIcon } from "@chakra-ui/icons";
 import {
-  Spacer,
   Input,
   Box,
   BoxProps,
@@ -84,9 +83,9 @@ export const Filter: React.FC<Props> = () => {
   }, [setRooms, update]);
 
   return (
-    <Row flex="1" p={themeGlobal.padding}>
-      <Box w="70%" minWidth="max-content">
-        <FormControl w="100%">
+    <Row w="100%" p={themeGlobal.padding}>
+      <Box w="60%" minWidth="max-content">
+        <FormControl>
           <FormLabel htmlFor="sala reuniao">Sala</FormLabel>
           <Select
             // placeholder="Selecione uma sala"
@@ -101,9 +100,7 @@ export const Filter: React.FC<Props> = () => {
           </Select>
         </FormControl>
       </Box>
-      <Spacer />
-      <Spacer />
-      <Box w="30%">
+      <Box w="40%">
         <FormControl>
           <FormLabel htmlFor="schedule">Data</FormLabel>
           <Input

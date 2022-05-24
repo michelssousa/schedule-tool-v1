@@ -136,6 +136,7 @@ const ListReserved: React.FC<Props> = () => {
   const [schedulesReserved, setScheduleReserved] = useState<ScheduleDetail[]>(
     []
   );
+
   useEffect(() => {
     async function builScheduleFree() {
       const _month = `${month}`.length == 1 ? `0${month}` : month;
@@ -158,7 +159,8 @@ const ListReserved: React.FC<Props> = () => {
       <Column h="100%" alignItems="flex-start" justifyContent="flex-start">
         <Row justifyContent="flex-start" w="100%">
           <Heading as="h6" size="md">
-            {`Suas Reservas para: ${day}/${month}/${year}`}
+            {/* {`Suas Reservas para: ${day}/${month}/${year}`} */}
+            {`Suas Reservas para data`}
           </Heading>
         </Row>
         <Column w="100%" mt="1rem" overflowY="scroll">

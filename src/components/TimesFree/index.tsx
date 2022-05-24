@@ -67,7 +67,9 @@ const ListTimeFree: React.FC<Props> = () => {
 
   useEffect(() => {
     async function builScheduleFree() {
-      // setHoursSelected([]);
+      // if (( month ??.length ?? 0) != (new Date().getMonth() -1)) {
+      //   setScheduleFree([]);
+      // }
       const _result = await scheduleManager.whiteList(
         `${room}`,
         day,
@@ -83,7 +85,7 @@ const ListTimeFree: React.FC<Props> = () => {
 
   return (
     <>
-      <Column h="100%" justifyContent="flex-start">
+      <Column h="100%" p="0" mx="0">
         <Row justifyContent="flex-start" w="100%">
           <Heading as="h2" size="md">
             Selecione o horário de inicio da reunião
@@ -94,7 +96,7 @@ const ListTimeFree: React.FC<Props> = () => {
             Tempo Reservado : {`${_timeSelected} Hora(s)`}
           </Heading>
         </Row>
-        {schedulesFree.length <= 0 ? (
+        {schedulesFree.length == 0 ? (
           <Loading />
         ) : (
           <MGrid list={schedulesFree} />

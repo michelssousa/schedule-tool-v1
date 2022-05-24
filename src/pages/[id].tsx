@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import { Grid, Box } from "@chakra-ui/react";
 import type { NextPage } from "next";
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 import {
@@ -18,7 +19,7 @@ import { useScheduleContext } from "~/core/contexts";
 import { colors } from "~/styles";
 
 const Home: NextPage = () => {
-  const { setUpdate, update, setUser } = useScheduleContext();
+  const { setUser } = useScheduleContext();
   const router = useRouter();
   const { id } = router.query;
 
@@ -28,31 +29,35 @@ const Home: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Toolbusiness</title>
+      </Head>
       <Wrapper>
         <Grid
-          gridTemplateRows={[`10vh 80vh 10vh`]}
+          gridTemplateRows={[`10% 80vh 10%`]}
           gridTemplateAreas={[`'header' 'main' 'footer'`]}
           gap={2}
         >
           <Box gridArea="header" bg={colors.body}>
-            <Column h="70%" w="100%">
+            <Column h="100%" w="100%">
               <Row flex="1" w="100%" justifyContent="flex-start">
                 <Header />
               </Row>
             </Column>
           </Box>
-          <Box gridArea="main">
-            <Row h="15vh" w="100%" bg={colors.body} mb="1rem">
+          <Box gridArea="main" h="100%">
+            <Row h="" w="100%" bg={colors.body} mb="2rem">
               <Filter />
             </Row>
-            <Box h="30vh" mb="0.5rem">
+            <Box h="" mb="2rem" pr={["0.6rem", "0"]}>
               <ListTimeFree />
             </Box>
-            <Box h="40vh">
+            <Box h="">
               <ListReserved />
             </Box>
           </Box>
-          <Box zIndex="1000" h="15vh" gridArea="footer" bg={colors.body}>
+          <Box h="" gridArea="footer" bg={colors.body} zIndex="modal">
             <Footer />
           </Box>
         </Grid>
