@@ -31,7 +31,7 @@ export const StickTop: React.FC<Props> = ({ children }) => {
 export const StickBottom: React.FC<Props> = ({ children }) => {
   return (
     <Box
-      bg={colors.body}
+      bg={colors.noActive}
       w="100%"
       left="0"
       position="fixed"
@@ -46,11 +46,14 @@ export const StickBottom: React.FC<Props> = ({ children }) => {
 export const Wrapper: React.FC<Props> = ({ children }) => {
   return (
     <Container
-      p="0"
-      // bg="gray.600"
+      w="full"
       h="100vh"
-      maxH="container.xl"
-      maxW="container.sm"
+      p="0"
+      position="relative"
+      // bg="gray.600"
+      bg={colors.noActive}
+      maxW="container.md"
+      overflow="hidden"
     >
       {children}
     </Container>
@@ -68,7 +71,7 @@ export const Content: React.FC<Partial<ContentProps>> = ({
 }) => {
   return (
     <>
-      <VStack h="100%" w="100%" bg={color} {...rest}>
+      <VStack h="100vh" w="100wh" bg={color} {...rest} m="0" p="0">
         {children}
       </VStack>
     </>
@@ -83,6 +86,8 @@ export const Row: React.FC<Partial<FlexProps>> = ({ children, ...rest }) => {
         justifyContent="center"
         alignItems="center"
         flexDir="row"
+        h={"full"}
+        w="full"
         gap="2"
         {...rest}
       >
@@ -100,6 +105,8 @@ export const Column: React.FC<Partial<FlexProps>> = ({ children, ...rest }) => {
         justifyContent="center"
         alignItems="center"
         flexDir="column"
+        h={"full"}
+        w="full"
         gap="2"
         {...rest}
       >
@@ -109,8 +116,4 @@ export const Column: React.FC<Partial<FlexProps>> = ({ children, ...rest }) => {
   );
 };
 
-export const Loading = () => (
-  <Column h="100%" bg="transparent" align="center" justify="center">
-    <Spinner size="xl" />
-  </Column>
-);
+export const Loading = () => <Spinner size="xl" />;

@@ -12,6 +12,7 @@ import {
   Button,
   Spacer,
   useToast,
+  Box,
 } from "@chakra-ui/react";
 
 import { Column, Row } from "~/components";
@@ -56,7 +57,7 @@ const ListReservedDetail: React.FC<ListReservedDetailProps> = ({
   };
 
   return (
-    <ListItem bg="white">
+    <ListItem bg="white" w={["90%", "100%"]}>
       <HStack px="0.3rem" align={"center"} justify={"space-between"}>
         <HStack>
           <Stack direction={"row"}>
@@ -117,7 +118,7 @@ type WithReservedProps = {
   list: ScheduleDetail[];
 };
 const WithReserved = ({ list }: WithReservedProps) => (
-  <List spacing={2} w="100%" h="100%">
+  <List spacing={2}>
     {list.map((schedule: ScheduleDetail) => (
       <ListReservedDetail
         key={schedule.key + schedule.hour + schedule.data}
@@ -156,20 +157,18 @@ const ListReserved: React.FC<Props> = () => {
 
   return (
     <>
-      <Column h="100%" alignItems="flex-start" justifyContent="flex-start">
-        <Row justifyContent="flex-start" w="100%">
-          <Heading as="h6" size="md">
-            {/* {`Suas Reservas para: ${day}/${month}/${year}`} */}
-            {`Suas Reservas para data`}
-          </Heading>
-        </Row>
-        <Column w="100%" mt="1rem" overflowY="scroll">
+      <Column justifyContent="flex-start" w="100%">
+        <Heading as="h6" size={["xs", "md"]} mb="0.5rem">
+          {/* {`Suas Reservas para: ${day}/${month}/${year}`} */}
+          {`Veja suas reservas para essa data`}
+        </Heading>
+        <Box w="100%" h="100%" overflowY="scroll">
           {schedulesReserved.length <= 0 ? (
             <WithoutReserved />
           ) : (
             <WithReserved list={[...schedulesReserved]} />
           )}
-        </Column>
+        </Box>
       </Column>
     </>
   );

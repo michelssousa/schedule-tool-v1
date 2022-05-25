@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { HamburgerIcon } from "@chakra-ui/icons";
 import {
@@ -16,13 +16,14 @@ import {
   FormLabel,
   Select,
   Heading,
+  HStack,
 } from "@chakra-ui/react";
 import moment from "moment";
 
 import { Column, Row } from "~/components";
 import { Props, scheduleManager } from "~/core";
 import { useScheduleContext, RoomType } from "~/core/contexts";
-import { colors, themeGlobal } from "~/styles";
+import { colors } from "~/styles";
 
 const Logo = (props: BoxProps) => (
   <Box {...props}>
@@ -52,7 +53,7 @@ const MenuSetup = (props: Partial<MenuProps>) => (
 
 export const Header: React.FC<BoxProps> = () => {
   return (
-    <Box>
+    <Box p="0" m="0" h="100%">
       <Column>
         <Row justifyContent="flex-start">
           <MenuSetup />
@@ -83,15 +84,11 @@ export const Filter: React.FC<Props> = () => {
   }, [setRooms, update]);
 
   return (
-    <Row w="100%" p={themeGlobal.padding}>
-      <Box w="60%" minWidth="max-content">
-        <FormControl>
+    <Row w="100%">
+      <HStack spacing="0.5" w="100%">
+        <FormControl size={["xs", "md"]}>
           <FormLabel htmlFor="sala reuniao">Sala</FormLabel>
-          <Select
-            // placeholder="Selecione uma sala"
-            onChange={getRoomSelectOnChange}
-            defaultValue={rooms?.length}
-          >
+          <Select onChange={getRoomSelectOnChange} defaultValue={rooms?.length}>
             {rooms?.map((room: RoomType) => (
               <option key={room.i_salas} value={room.i_salas}>
                 {room.sala}
@@ -99,18 +96,18 @@ export const Filter: React.FC<Props> = () => {
             ))}
           </Select>
         </FormControl>
-      </Box>
-      <Box w="40%">
-        <FormControl>
+        <FormControl size="sm">
           <FormLabel htmlFor="schedule">Data</FormLabel>
           <Input
+            // w={["90%", "100%"]}
+            px="0.5rem"
             type="date"
             // defaultValue={_startDay}
             min={_startDay}
             onChange={getDaySelectOnChange}
           />
         </FormControl>
-      </Box>
+      </HStack>
     </Row>
   );
 };

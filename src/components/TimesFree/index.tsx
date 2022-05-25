@@ -16,7 +16,7 @@ type MGridProps = Props & {
 
 const MGrid: React.FC<MGridProps> = ({ list }) => {
   return (
-    <Grid w="100%" p={1} templateColumns="repeat(5, 1fr)" gap={2}>
+    <Grid templateColumns="repeat(5, 1fr)" gap={2} w="100%">
       {list.map((key) => (
         <TimeButton key={key} value={key} />
       ))}
@@ -67,9 +67,7 @@ const ListTimeFree: React.FC<Props> = () => {
 
   useEffect(() => {
     async function builScheduleFree() {
-      // if (( month ??.length ?? 0) != (new Date().getMonth() -1)) {
-      //   setScheduleFree([]);
-      // }
+      setScheduleFree([]);
       const _result = await scheduleManager.whiteList(
         `${room}`,
         day,
@@ -80,22 +78,22 @@ const ListTimeFree: React.FC<Props> = () => {
       setScheduleFree([..._result.keys()]);
     }
 
-    builScheduleFree();
-  }, [day, getUser, month, year, hoursSelected, room]);
+    if (hoursSelected?.length == 0) {
+      builScheduleFree();
+    }
+  }, [day, getUser, month, year, room, hoursSelected]);
 
   return (
     <>
-      <Column h="100%" p="0" mx="0">
-        <Row justifyContent="flex-start" w="100%">
-          <Heading as="h2" size="md">
-            Selecione o horário de inicio da reunião
-          </Heading>
-        </Row>
-        <Row justifyContent="flex-start" w="100%">
-          <Heading as="h6" size="xs">
-            Tempo Reservado : {`${_timeSelected} Hora(s)`}
-          </Heading>
-        </Row>
+      <Column align="flex-start" justify="flex-start">
+        <Heading as="h2" size={["xs", "md"]}>
+          Selecione o horário de inicio da reunião
+        </Heading>
+
+        <Heading as="h6" size="xs" mb={["0", "1rem"]}>
+          Tempo Reservado : {`${_timeSelected} Hora(s)`}
+        </Heading>
+
         {schedulesFree.length == 0 ? (
           <Loading />
         ) : (

@@ -34,7 +34,7 @@ export const Footer: React.FC<Props> = () => {
 
   return (
     <>
-      <Row w="100%" align="center" h="100%" justifyContent="center" px="2">
+      <Row>
         <Button
           size="lg"
           colorScheme={"facebook"}

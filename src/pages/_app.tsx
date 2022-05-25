@@ -7,19 +7,20 @@ import { AppProps } from "next/app";
 import { ScheduleProvider } from "~/core";
 
 const globalStyles = css`
-  * {
+  *,
+  *::before,
+  *::after {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
   ,
   html,
   body {
-    margin: 0;
-    padding: 0;
     background: #e6e6fa;
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     font-size: (62.5/100) * 16;
   }
   ,
