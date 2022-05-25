@@ -44,7 +44,7 @@ const Home: NextPage = () => {
           <Box h={["40%", "35%"]} bg={colors.body} mt="1.5%">
             <ListTimeFree />
           </Box>
-          <Box h={["42%", "50%"]} bg="whatsapp.50" mt="1.5%">
+          <Box h={["42%", "50%"]} bg="transparent" mt="1.5%">
             <ListReserved />
           </Box>
         </Box>
