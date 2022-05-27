@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 
 import { Props } from "~/core";
-import { colors } from "~/styles";
+import { colors, themeGlobal } from "~/styles";
 
 export const StickTop: React.FC<Props> = ({ children }) => {
   return (
@@ -48,12 +48,12 @@ export const Wrapper: React.FC<Props> = ({ children }) => {
     <Container
       w="full"
       h="100vh"
-      p="0"
       position="relative"
       // bg="gray.600"
       bg={colors.noActive}
       maxW="container.md"
       overflow="hidden"
+      px={["0.5rem"]}
     >
       {children}
     </Container>

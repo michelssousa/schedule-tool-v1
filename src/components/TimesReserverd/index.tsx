@@ -106,9 +106,8 @@ const ListReservedDetail: React.FC<ListReservedDetailProps> = ({
 };
 
 const WithoutReserved = () => (
-  <Column h="100" alignItems="center" justify="center">
+  <Column alignItems="center" justifyContent="center">
     <Text as="i" color={colors.primary}>
-      {" "}
       Você não reservas para essa data
     </Text>
   </Column>
@@ -157,9 +156,14 @@ const ListReserved: React.FC<Props> = () => {
 
   return (
     <>
-      <Column justifyContent="flex-start" w="100%">
-        <Heading as="h6" size={["xs", "md"]} mb="0.5rem">
-          {/* {`Suas Reservas para: ${day}/${month}/${year}`} */}
+      <Column
+        w="100%"
+        // bg="red"
+        align="center"
+        justifyContent="center"
+        pt="1rem"
+      >
+        <Heading as="h6" size={["xs", "md"]}>
           {`Veja suas reservas para essa data`}
         </Heading>
         <Box w="100%" h="100%" overflowY="scroll">

@@ -65,35 +65,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
-/*
-
-
-        <Grid
-          gridTemplateRows={`10vh 80vh 10vh`}
-          gridTemplateAreas={[`'header' 'main' 'footer'`]}
-          gap={2}
-        >
-          <Box gridArea="header" bg={colors.body}>
-            <Column>
-              <Row justifyContent="flex-start">
-                <Header />
-              </Row>
-            </Column>
-          </Box>
-          <Box gridArea="main" h="100%">
-            <Row bg={colors.body} mb="2rem">
-              <Filter />
-            </Row>
-            <Box pr={["0.8rem", "0"]}>
-              <ListTimeFree />
-            </Box>
-            <Box>
-              <ListReserved />
-            </Box>
-          </Box>
-          <Box gridArea="footer" bg={colors.body}>
-            <Footer />
-          </Box>
-        </Grid>
-*/
