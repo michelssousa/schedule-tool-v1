@@ -163,7 +163,7 @@ const ListReserved: React.FC<Props> = () => {
         justifyContent="center"
         pt="1rem"
       >
-        <Heading as="h6" size={["xs", "md"]}>
+        <Heading as="h5" size={["xs", "md"]}>
           {`Veja suas reservas para essa data`}
         </Heading>
         <Box w="100%" h="100%" overflowY="scroll">

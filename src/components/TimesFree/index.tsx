@@ -86,7 +86,7 @@ const ListTimeFree: React.FC<Props> = () => {
   return (
     <>
       <Column align="flex-start" justify="flex-start">
-        <Heading as="h2" size={["xs", "md"]}>
+        <Heading as="h5" size={["xs", "md"]}>
           Selecione o horário de inicio da reunião
         </Heading>
 

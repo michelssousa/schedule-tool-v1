@@ -53,7 +53,7 @@ export const Wrapper: React.FC<Props> = ({ children }) => {
       bg={colors.noActive}
       maxW="container.md"
       overflow="hidden"
-      px={["0.5rem"]}
+      px={["0.5rem", "0"]}
     >
       {children}
     </Container>
