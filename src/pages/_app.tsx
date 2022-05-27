@@ -15,13 +15,16 @@ const globalStyles = css`
     box-sizing: border-box;
   }
   ,
+  :root {
+    font-size: (62.5/100) * 16;
+  }
+  ,
   html,
   body {
     background: #e6e6fa;
     position: relative;
     width: 100vw;
     height: 100vh;
-    font-size: (62.5/100) * 16;
   }
   ,
   html {

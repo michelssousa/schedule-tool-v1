@@ -198,9 +198,20 @@ export const scheduleManager = {
     const _startDay: number = day === 0 ? new Date().getDate() : day;
     const _startMonth: number = month === 0 ? new Date().getMonth() : month - 1;
     const _startYear: number = year === 0 ? new Date().getFullYear() : year;
+    const _cutOffTime = day === new Date().getDate() ? 1 : 1;
+    const _hourSelectedUser =
+      day === new Date().getDate() ? new Date().getHours() : setup.hourOpen;
+
+    const _minuteSelectedUser =
+      day !== new Date().getDate()
+        ? setup.minutesOpen
+        : setup.minimumHours *
+          Math.floor(new Date().getMinutes() / setup.minimumHours);
+
     const _numberOfHoursWorked: number =
-      (setup.hourOff - setup.hourOpen) * (_oneHourInMinutes / _minimumHours) -
-      1;
+      (setup.hourOff - _hourSelectedUser) *
+        (_oneHourInMinutes / _minimumHours) -
+      _cutOffTime;
 
     const _reservedList = blackList.size > 0 ? [...blackList.values()] : [];
 
@@ -212,10 +223,11 @@ export const scheduleManager = {
       hours: setup.hourOpen,
       minutes: setup.minutesOpen,
     });
+
     for (let day = 0; day < _days; day++) {
       _startHour.add(day, "day");
-      _startHour.set("hours", setup.hourOpen);
-      _startHour.set("minute", setup.minutesOpen);
+      _startHour.set("hours", _hourSelectedUser);
+      _startHour.set("minute", _minuteSelectedUser);
       _baseScheduleKey = scheduleManager.format.key(
         room,
         _startHour.format(scheduleManager.format.data),

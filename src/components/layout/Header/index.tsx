@@ -16,7 +16,6 @@ import {
   FormLabel,
   Select,
   Heading,
-  HStack,
 } from "@chakra-ui/react";
 import moment from "moment";
 
@@ -84,30 +83,31 @@ export const Filter: React.FC<Props> = () => {
   }, [setRooms, update]);
 
   return (
-    <Row w="100%">
-      <HStack spacing="0.5" w="100%">
-        <FormControl size={["xs", "md"]}>
-          <FormLabel htmlFor="sala reuniao">Sala</FormLabel>
-          <Select onChange={getRoomSelectOnChange} defaultValue={rooms?.length}>
-            {rooms?.map((room: RoomType) => (
-              <option key={room.i_salas} value={room.i_salas}>
-                {room.sala}
-              </option>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl size="sm">
-          <FormLabel htmlFor="schedule">Data</FormLabel>
-          <Input
-            // w={["90%", "100%"]}
-            px="0.5rem"
-            type="date"
-            // defaultValue={_startDay}
-            min={_startDay}
-            onChange={getDaySelectOnChange}
-          />
-        </FormControl>
-      </HStack>
+    <Row>
+      <FormControl>
+        <FormLabel htmlFor="sala reuniao">Sala</FormLabel>
+        <Select
+          size={["xs", "md"]}
+          onChange={getRoomSelectOnChange}
+          defaultValue={rooms?.length}
+        >
+          {rooms?.map((room: RoomType) => (
+            <option key={room.i_salas} value={room.i_salas}>
+              {room.sala}
+            </option>
+          ))}
+        </Select>
+      </FormControl>
+      <FormControl>
+        <FormLabel htmlFor="schedule">Data</FormLabel>
+        <Input
+          type="date"
+          size={["xs", "md"]}
+          // defaultValue={_startDay}
+          min={_startDay}
+          onChange={getDaySelectOnChange}
+        />
+      </FormControl>
     </Row>
   );
 };

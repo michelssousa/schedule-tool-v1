@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 
 import { Props } from "~/core";
-import { colors, themeGlobal } from "~/styles";
+import { colors } from "~/styles";
 
 export const StickTop: React.FC<Props> = ({ children }) => {
   return (
