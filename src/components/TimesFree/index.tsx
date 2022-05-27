@@ -16,11 +16,13 @@ type MGridProps = Props & {
 
 const MGrid: React.FC<MGridProps> = ({ list }) => {
   return (
-    <Grid templateColumns="repeat(5, 1fr)" gap={2} w="100%">
-      {list.map((key) => (
-        <TimeButton key={key} value={key} />
-      ))}
-    </Grid>
+    <>
+      <Grid templateColumns="repeat(5, 1fr)" gap={["0", "2"]} w="100%">
+        {list.map((key) => (
+          <TimeButton key={key} value={key} />
+        ))}
+      </Grid>
+    </>
   );
 };
 
@@ -44,9 +46,9 @@ const TimeButton: React.FC<ButtonTimeProps> = ({ value, ...rest }) => {
       {...rest}
       variant={show ? "solid" : "outline"}
       colorScheme="facebook"
-      h="2rem"
-      size="sm"
-      padding="0.7rem"
+      h="1rem"
+      size={["xs", "xs"]}
+      padding={["0", "0.7rem"]}
       value={value}
       onClick={(e) => handleClick(e)}
       isActive
@@ -85,20 +87,24 @@ const ListTimeFree: React.FC<Props> = () => {
 
   return (
     <>
-      <Column align="flex-start" justify="flex-start">
-        <Heading as="h5" size={["xs", "md"]}>
-          Selecione o horário de inicio da reunião
-        </Heading>
+      <Column align="flex-start" justify="flex-start" position="relative">
+        <Column w="100" h="20%" position="absolute" top="0">
+          <Heading fontSize={["xs", "xs"]}>
+            Selecione o horário de inicio da reunião
+          </Heading>
 
-        <Heading as="h6" size="xs" mb={["0", "1rem"]}>
-          Tempo Reservado : {`${_timeSelected} Hora(s)`}
-        </Heading>
+          <Heading fontSize={["xs", "xs"]}>
+            Tempo Reservado : {`${_timeSelected} Hora(s)`}
+          </Heading>
+        </Column>
 
-        {schedulesFree.length == 0 ? (
-          <Loading />
-        ) : (
-          <MGrid list={schedulesFree} />
-        )}
+        <Column w="100%" h="80%" position="absolute" bottom="0">
+          {schedulesFree.length == 0 ? (
+            <Loading />
+          ) : (
+            <MGrid list={schedulesFree} />
+          )}
+        </Column>
         {/* <div>{JSON.stringify(hoursSelected, true, 2)}</div> */}
       </Column>
     </>

@@ -46,7 +46,6 @@ export const StickBottom: React.FC<Props> = ({ children }) => {
 export const Wrapper: React.FC<Props> = ({ children }) => {
   return (
     <Container
-      w="full"
       h="100vh"
       position="relative"
       // bg="gray.600"
