@@ -11,7 +11,7 @@ import { Title } from "../layout";
 
 const WithoutFreeHours = () => (
   <Row bg="facebook.100">
-    <Text color={colors.primary}>
+    <Text color={colors.primary} fontSize={["sm", "md"]}>
       🍺 🍺: OPS! Todos horário reservado, tente outra sala 🍺
     </Text>
   </Row>
