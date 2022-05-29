@@ -6,12 +6,14 @@ import {
   Row,
   Column,
   Loading,
+  Title,
 } from "./layout";
 import { Footer } from "./layout/Footer";
 import { Header, Filter } from "./layout/Header";
 import ListTimeFree from "./TimesFree";
 
 export {
+  Title,
   Loading,
   ListTimeFree,
   Wrapper,

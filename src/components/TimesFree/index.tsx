@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import { Heading, Grid, Button } from "@chakra-ui/react";
+import { Grid, Button } from "@chakra-ui/react";
 
-import { Column, Row, Loading } from "~/components";
+import { Column, Loading } from "~/components";
 import { Props, scheduleManager } from "~/core";
 import { useScheduleContext } from "~/core/contexts";
+
+import { Title } from "../layout";
 
 type ButtonTimeProps = Props & {
   value: string;
@@ -89,13 +91,8 @@ const ListTimeFree: React.FC<Props> = () => {
     <>
       <Column align="flex-start" justify="flex-start" position="relative">
         <Column w="100" h="20%" position="absolute" top="0">
-          <Heading fontSize={["xs", "md"]}>
-            Selecione o horário de inicio da reunião
-          </Heading>
-
-          <Heading fontSize={["xs", "xs"]}>
-            Tempo Reservado : {`${_timeSelected} Hora(s)`}
-          </Heading>
+          <Title text="Selecione o horário de inicio da reserva" />
+          <Title text={`Tempo Reservado : ${_timeSelected} Hora(s)`} />
         </Column>
 
         <Column

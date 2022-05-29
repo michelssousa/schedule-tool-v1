@@ -5,7 +5,14 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-import { Header, Filter, Wrapper, ListTimeFree, Footer } from "~/components";
+import {
+  Header,
+  Filter,
+  Wrapper,
+  ListTimeFree,
+  Footer,
+  Column,
+} from "~/components";
 import ListReserved from "~/components/TimesReserverd";
 import { useScheduleContext } from "~/core/contexts";
 import { colors } from "~/styles";
@@ -49,7 +56,14 @@ const Home: NextPage = () => {
           >
             <ListTimeFree />
           </Box>
-          <Box h={["42%", "50%"]} w="100%" bg="transparent" mt="1.5%">
+          <Box
+            w="100%"
+            h={["46%", "50%"]}
+            bg={colors.body}
+            mt="1.5%"
+            position="relative"
+            overflow="hidden"
+          >
             <ListReserved />
           </Box>
         </Box>

@@ -5,6 +5,7 @@ import {
   FlexProps,
   Box,
   Spinner,
+  Heading,
 } from "@chakra-ui/react";
 
 import { Props } from "~/core";
@@ -116,3 +117,10 @@ export const Column: React.FC<Partial<FlexProps>> = ({ children, ...rest }) => {
 };
 
 export const Loading = () => <Spinner size="xl" />;
+
+type TitleProps = Props & {
+  text: string;
+};
+export const Title: React.FC<TitleProps> = ({ text }) => {
+  return <Heading fontSize={["xs", "md"]}>{text}</Heading>;
+};
