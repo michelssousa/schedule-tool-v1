@@ -9,12 +9,11 @@ import {
   Stack,
   VStack,
   Button,
-  Spacer,
   useToast,
   Box,
 } from "@chakra-ui/react";
 
-import { Title, Row, Column } from "~/components";
+import { Title, Row } from "~/components";
 import { Props, scheduleManager } from "~/core";
 import { useScheduleContext, RoomType } from "~/core/contexts";
 import { ScheduleDetail } from "~/core/schedule";
@@ -111,7 +110,7 @@ const ListReservedDetail: React.FC<ListReservedDetailProps> = ({
 
 const WithoutReserved = () => (
   <Row bg="facebook.100">
-    <Text color={colors.primary}>Você não reservas para essa data</Text>
+    <Text color={colors.primary}>Você não reservas para essa data 🕐 🍻</Text>
   </Row>
 );
 

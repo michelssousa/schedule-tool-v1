@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
 
-import { Grid, Button } from "@chakra-ui/react";
+import { Grid, Button, Text } from "@chakra-ui/react";
 
-import { Column, Loading } from "~/components";
+import { Column, Loading, Row } from "~/components";
 import { Props, scheduleManager } from "~/core";
 import { useScheduleContext } from "~/core/contexts";
+import { colors } from "~/styles";
 
 import { Title } from "../layout";
+
+const WithoutFreeHours = () => (
+  <Row bg="facebook.100">
+    <Text color={colors.primary}>
+      🍺 🍺: OPS! Todos horário reservado, tente outra sala 🍺
+    </Text>
+  </Row>
+);
 
 type ButtonTimeProps = Props & {
   value: string;
@@ -68,6 +77,7 @@ const ListTimeFree: React.FC<Props> = () => {
   const _hourSelect = hoursSelected?.length ?? 0;
   const _getMimunHours = getSetup?.minimumHours ?? 1;
   const _timeSelected = _hourSelect / (_minimumHours / _getMimunHours);
+  const [display, setDisplay] = useState(true);
 
   useEffect(() => {
     async function builScheduleFree() {
@@ -80,12 +90,22 @@ const ListTimeFree: React.FC<Props> = () => {
         getUser
       );
       setScheduleFree([..._result.keys()]);
+
+      setDisplay(_result.size == 0);
     }
 
     if (hoursSelected?.length == 0) {
       builScheduleFree();
     }
   }, [day, getUser, month, year, room, hoursSelected]);
+
+  if (display) {
+    return (
+      <>
+        <WithoutFreeHours />
+      </>
+    );
+  }
 
   return (
     <>
@@ -103,7 +123,7 @@ const ListTimeFree: React.FC<Props> = () => {
           align="center"
           justifyContent="center"
         >
-          {schedulesFree.length == 0 ? (
+          {schedulesFree?.length == 0 ? (
             <Loading />
           ) : (
             <MGrid list={schedulesFree} />
