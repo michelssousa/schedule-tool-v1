@@ -198,7 +198,7 @@ export const scheduleManager = {
     const _startDay: number = day === 0 ? new Date().getDate() : day;
     const _startMonth: number = month === 0 ? new Date().getMonth() : month - 1;
     const _startYear: number = year === 0 ? new Date().getFullYear() : year;
-    const _cutOffTime = day === new Date().getDate() ? 2 : 1;
+    const _cutOffTime = day === new Date().getDate() ? 1 : 1;
     const _hourSelectedUser =
       day === new Date().getDate() && new Date().getHours() >= setup.hourOpen
         ? new Date().getHours()
