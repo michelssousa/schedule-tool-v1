@@ -23,6 +23,7 @@ export type Setup = {
   hourOpen: number;
   hourOff: number;
   minutesOpen: number;
+  chaveToken: string;
 };
 
 const fetcher = (url: string) => axios.get(url).then((res: any) => res.data);
@@ -116,6 +117,7 @@ export const scheduleManager = {
       hourOpen: parseInt(getSetup.data[0].hourOpen),
       hourOff: parseInt(getSetup.data[0].hourOff),
       minutesOpen: parseInt(getSetup.data[0].minutesOpen),
+      chaveToken: getSetup.data[0].chaveToken,
     };
     return _resut;
   },
@@ -214,6 +216,10 @@ export const scheduleManager = {
       (setup.hourOff - _hourSelectedUser) * (_oneHourInMinutes / _minimumHours);
 
     const _reservedList = blackList.size > 0 ? [...blackList.values()] : [];
+
+    if (_hourSelectedUser > setup.hourOff) {
+      return _result;
+    }
 
     let _baseScheduleKey = "";
     const _startHour = moment({

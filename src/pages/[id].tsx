@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-import { Box } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -11,20 +11,43 @@ import {
   Wrapper,
   ListTimeFree,
   Footer,
-  Column,
+  Row,
 } from "~/components";
 import ListReserved from "~/components/TimesReserverd";
 import { useScheduleContext } from "~/core/contexts";
 import { colors } from "~/styles";
 
 const Home: NextPage = () => {
-  const { setUser } = useScheduleContext();
+  const { setUser, getSetup } = useScheduleContext();
+  const [useIsValid, setUseIsValid] = useState(false);
   const router = useRouter();
   const { id } = router.query;
 
   useEffect(() => {
-    setUser(id);
-  });
+    try {
+      const _result: string[] = atob(`${id}`).toString().split(".");
+      if (_result[0] === getSetup?.chaveToken) {
+        setUseIsValid(true);
+        setUser(parseInt(_result[0]));
+      }
+    } catch {
+      setUseIsValid(false);
+    }
+  }, [getSetup?.chaveToken, setUser, id]);
+
+  if (useIsValid == false) {
+    return (
+      <>
+        <Wrapper>
+          <Row>
+            <Text color={colors.primary} fontSize={["sm", "md"]}>
+              🍺 🍺: OPS! Você nao tem acesso para reservar salas 🍺
+            </Text>
+          </Row>
+        </Wrapper>
+      </>
+    );
+  }
 
   return (
     <>
