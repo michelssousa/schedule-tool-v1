@@ -141,7 +141,8 @@ const ListReserved: React.FC<Props> = () => {
   useEffect(() => {
     async function builScheduleFree() {
       const _month = `${month}`.length == 1 ? `0${month}` : month;
-      const _key = `${day}${_month}${year}`;
+      const _day = `${day}`.length == 1 ? `0${day}` : day;
+      const _key = `${_day}${_month}${year}`;
       const _blackList = await scheduleManager.blackList();
 
       const _listReservedForUserAndData = [..._blackList.values()].filter(

@@ -113,6 +113,7 @@ const ListTimeFree: React.FC<Props> = () => {
         <Column w="100" h="20%" position="absolute" top="0">
           <Title text="Selecione o horário de inicio da reserva" />
           <Title text={`Tempo Reservado : ${_timeSelected} Hora(s)`} />
+          {/* <div>{JSON.stringify(hoursSelected, true, 2)}</div> */}
         </Column>
 
         <Column
@@ -129,7 +130,6 @@ const ListTimeFree: React.FC<Props> = () => {
             <MGrid list={schedulesFree} />
           )}
         </Column>
-        {/* <div>{JSON.stringify(hoursSelected, true, 2)}</div> */}
       </Column>
     </>
   );

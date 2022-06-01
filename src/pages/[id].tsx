@@ -18,6 +18,8 @@ import { useScheduleContext } from "~/core/contexts";
 import { colors } from "~/styles";
 
 const Home: NextPage = () => {
+  const USER_ID = 1;
+  const SYSTEM_PASS = 0;
   const { setUser, getSetup } = useScheduleContext();
   const [useIsValid, setUseIsValid] = useState(false);
   const router = useRouter();
@@ -26,9 +28,9 @@ const Home: NextPage = () => {
   useEffect(() => {
     try {
       const _result: string[] = atob(`${id}`).toString().split(".");
-      if (_result[0] === getSetup?.chaveToken) {
+      if (_result[SYSTEM_PASS] === getSetup?.chaveToken) {
         setUseIsValid(true);
-        setUser(parseInt(_result[0]));
+        setUser(parseInt(_result[USER_ID]));
       }
     } catch {
       setUseIsValid(false);
