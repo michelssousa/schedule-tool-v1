@@ -40,12 +40,11 @@ export const scheduleManager = {
   },
   endpoints: {
     scheduleActual:
-      "https://toolbusiness.com.br/salas/api.php?entidade=reserva/C",
-    setup: "https://toolbusiness.com.br/salas/api.php?entidade=setup",
-    scheduleAll: "https://toolbusiness.com.br/salas/api.php?entidade=reserva/C",
-    schedulePost:
-      "https://toolbusiness.com.br/salas/api.php?entidade=reserva/M",
-    rooms: "https://toolbusiness.com.br/salas/api.php?entidade=salas",
+      "http://toolbusiness.com.br/salas/api.php?entidade=reserva/C",
+    setup: "http://toolbusiness.com.br/salas/api.php?entidade=setup",
+    scheduleAll: "http://toolbusiness.com.br/salas/api.php?entidade=reserva/C",
+    schedulePost: "http://toolbusiness.com.br/salas/api.php?entidade=reserva/M",
+    rooms: "http://toolbusiness.com.br/salas/api.php?entidade=salas",
   },
   getRoomsForName: async () => {
     const _getRooms = await fetcher(scheduleManager.endpoints.rooms);
