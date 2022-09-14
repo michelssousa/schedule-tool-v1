@@ -28,7 +28,6 @@ const Home: NextPage = () => {
   useEffect(() => {
     try {
       const _result: string[] = window.atob(`${id}`).toString().split(".");
-      alert(getSetup?.chaveToken);
       if (_result[SYSTEM_PASS] === getSetup?.chaveToken) {
         setUseIsValid(true);
         setUser(parseInt(_result[USER_ID]));

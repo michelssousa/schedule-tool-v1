@@ -1,5 +1,18 @@
 import axios from "axios";
+import * as https from "https";
 import moment from "moment";
+
+const axioClient = axios.create({
+  withCredentials: false,
+  headers: {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+  },
+  httpsAgent: new https.Agent({
+    rejectUnauthorized: false,
+  }),
+});
 
 export type Schedule = {
   i_reserva: string;
@@ -26,7 +39,8 @@ export type Setup = {
   chaveToken: string;
 };
 
-const fetcher = (url: string) => axios.get(url).then((res: any) => res.data);
+const fetcher = (url: string) =>
+  axioClient.get(url).then((res: any) => res.data);
 
 const post = (data: any) =>
   axios
@@ -40,11 +54,13 @@ export const scheduleManager = {
   },
   endpoints: {
     scheduleActual:
-      "http://toolbusiness.com.br/salas/api.php?entidade=reserva/C",
-    setup: "http://toolbusiness.com.br/salas/api.php?entidade=setup",
-    scheduleAll: "http://toolbusiness.com.br/salas/api.php?entidade=reserva/C",
-    schedulePost: "http://toolbusiness.com.br/salas/api.php?entidade=reserva/M",
-    rooms: "http://toolbusiness.com.br/salas/api.php?entidade=salas",
+      "https://toolbusine.sslblindado.com/salas/api.php?entidade=reserva/C",
+    setup: "https://toolbusine.sslblindado.com/salas/api.php?entidade=setup",
+    scheduleAll:
+      "https://toolbusine.sslblindado.com/salas/api.php?entidade=reserva/C",
+    schedulePost:
+      "https://toolbusine.sslblindado.com/salas/api.php?entidade=reserva/M",
+    rooms: "https://toolbusine.sslblindado.com/salas/api.php?entidade=salas",
   },
   getRoomsForName: async () => {
     const _getRooms = await fetcher(scheduleManager.endpoints.rooms);

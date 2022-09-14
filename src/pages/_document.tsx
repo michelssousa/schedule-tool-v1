@@ -1,5 +1,5 @@
 import NextDocument, { Html, Head, Main, NextScript } from "next/document";
-
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 export default class Document extends NextDocument {
   render() {
     return (
